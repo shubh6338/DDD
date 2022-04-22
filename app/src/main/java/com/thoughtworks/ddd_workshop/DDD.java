@@ -5,15 +5,19 @@ package com.thoughtworks.ddd_workshop;
 
 import com.thoughtworks.ddd_workshop.cart.Cart;
 import com.thoughtworks.ddd_workshop.model.Item;
+import com.thoughtworks.ddd_workshop.model.Price;
 import com.thoughtworks.ddd_workshop.model.Product;
+
+import java.util.Currency;
 
 public class DDD {
 
     public static void main(String[] args) {
-        Product product1 = new Product("IPadPro");
-        Product product2 = new Product("Hero Ink Pen");
-        Product product3 = new Product("GM Cricket Bat");
-        Product product4 = new Product("IPadPro");
+        Currency usd = Currency.getInstance("USD");
+        Product product1 = new Product("IPadPro", new Price(10, usd));
+        Product product2 = new Product("Hero Ink Pen", new Price(20, usd));
+        Product product3 = new Product("GM Cricket Bat", new Price(30, usd));
+        Product product4 = new Product("IPadPro", new Price(40, usd));
         Cart cart1 = new Cart();
 
         Item iPadPro = new Item(product1);
