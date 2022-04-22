@@ -14,19 +14,29 @@ public class DDD {
         Product product2 = new Product("Hero Ink Pen");
         Product product3 = new Product("GM Cricket Bat");
         Product product4 = new Product("IPadPro");
-        Cart cart = new Cart();
+        Cart cart1 = new Cart();
+
         Item iPadPro = new Item(product1);
         Item heroPen = new Item(product2);
         Item gmBat = new Item(product3, 2);
-        cart.addItemToCart(iPadPro);
-        cart.addItemToCart(heroPen);
-        cart.addItemToCart(gmBat);
+        cart1.addItemToCart(iPadPro);
+        cart1.addItemToCart(heroPen);
+        cart1.addItemToCart(gmBat);
         System.out.println("Original Items : ");
-        cart.printItems();
-        cart.removeItem(product4);
+        cart1.printItems();
+        cart1.removeItem(product4);
         System.out.println("\nCurrent Items after removal of iPad: ");
-        cart.printItems();
+        cart1.printItems();
         System.out.println("\nRemoved Items: ");
-        cart.printRemovedItems();
+        cart1.printRemovedItems();
+
+        Cart cart2 = new Cart();
+        Cart cart3 = new Cart();
+        System.out.println("2 Empty carts: " + cart2.equals(cart3));
+        cart2.addItemToCart(iPadPro);
+        cart3.addItemToCart(iPadPro);
+        System.out.println("2 Same carts: " + cart2.equals(cart3));
+
+
     }
 }
