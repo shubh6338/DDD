@@ -5,18 +5,28 @@ package com.thoughtworks.ddd_workshop;
 
 import com.thoughtworks.ddd_workshop.cart.Cart;
 import com.thoughtworks.ddd_workshop.model.Item;
+import com.thoughtworks.ddd_workshop.model.Product;
 
 public class DDD {
 
     public static void main(String[] args) {
+        Product product1 = new Product("IPadPro");
+        Product product2 = new Product("Hero Ink Pen");
+        Product product3 = new Product("GM Cricket Bat");
+        Product product4 = new Product("IPadPro");
         Cart cart = new Cart();
-        Item iPadPro = new Item("IPadPro");
-        Item heroPen = new Item("Hero Ink Pen");
-        Item gmBat = new Item("GM Cricket Bat", 2);
+        Item iPadPro = new Item(product1);
+        Item heroPen = new Item(product2);
+        Item gmBat = new Item(product3, 2);
         cart.addItemToCart(iPadPro);
         cart.addItemToCart(heroPen);
         cart.addItemToCart(gmBat);
-        System.out.println("Items in cart are: ");
+        System.out.println("Original Items : ");
         cart.printItems();
+        cart.removeItem(product4);
+        System.out.println("\nCurrent Items after removal of iPad: ");
+        cart.printItems();
+        System.out.println("\nRemoved Items: ");
+        cart.printRemovedItems();
     }
 }
