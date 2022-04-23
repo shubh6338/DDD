@@ -55,5 +55,13 @@ public class DDD {
         Account account = new Account("Shubham", "12345676", new Address("Delhi"));
         List<Account> accountList = new ArrayList<>();
 
+        Customer customer = new Customer("Shubham", new Address("Delhi"));
+        accountList.add(account);
+        customer.setAccountList(accountList);
+
+        Address updatedAddress = new Address("Gurgaon");
+        updateAddress(customer, updatedAddress);
+        System.out.println(customer.getAddress().getCity());
+        System.out.println(account.getAddress().getCity());
     }
 }
