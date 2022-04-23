@@ -1,4 +1,4 @@
-package com.thoughtworks.ddd_workshop.model;
+package com.thoughtworks.ddd_workshop.domain.model;
 
 public class Item {
     private final Product product;
@@ -16,7 +16,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item { name = " + product.getName() + ", qty = " + qty + " } ";
+        return "Item { name = " + product.getName() + ", price = " + product.getPrice().getAmount() + " "
+                + product.getPrice().getCurrency() + ", qty = " + qty + " } ";
     }
 
     public Product getProduct() {

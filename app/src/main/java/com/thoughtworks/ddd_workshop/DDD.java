@@ -3,14 +3,21 @@
  */
 package com.thoughtworks.ddd_workshop;
 
-import com.thoughtworks.ddd_workshop.cart.Cart;
-import com.thoughtworks.ddd_workshop.model.Item;
-import com.thoughtworks.ddd_workshop.model.Price;
-import com.thoughtworks.ddd_workshop.model.Product;
+import com.thoughtworks.ddd_workshop.domain.customer.model.Account;
+import com.thoughtworks.ddd_workshop.domain.customer.model.Address;
+import com.thoughtworks.ddd_workshop.domain.customer.model.Customer;
+import com.thoughtworks.ddd_workshop.domain.model.*;
 
+import java.util.ArrayList;
 import java.util.Currency;
+import java.util.HashMap;
+import java.util.List;
+
+import static com.thoughtworks.ddd_workshop.domain.customer.service.CustomerService.updateAddress;
+import static com.thoughtworks.ddd_workshop.domain.domain_service.OrderItems.OrderService;
 
 public class DDD {
+    public static HashMap<String, Price> competitorMap = new HashMap<>();
 
     public static void main(String[] args) {
         Currency usd = Currency.getInstance("USD");
@@ -28,19 +35,25 @@ public class DDD {
         cart1.addItemToCart(gmBat);
         System.out.println("Original Items : ");
         cart1.printItems();
-        cart1.removeItem(product4);
+        cart1.removeItem(product1);
         System.out.println("\nCurrent Items after removal of iPad: ");
         cart1.printItems();
         System.out.println("\nRemoved Items: ");
         cart1.printRemovedItems();
 
-        Cart cart2 = new Cart();
-        Cart cart3 = new Cart();
-        System.out.println("2 Empty carts: " + cart2.equals(cart3));
-        cart2.addItemToCart(iPadPro);
-        cart3.addItemToCart(iPadPro);
-        System.out.println("2 Same carts: " + cart2.equals(cart3));
+        competitorMap.put("IPadPro", new Price(100, usd));
+        Product product5 = new Product("IPadPro");
+        Cart cart4 = new Cart();
+        cart4.addItemToCart(new Item(product5));
+        cart4.printItems();
 
+        Order order = OrderService(cart4);
+        System.out.println("Ordered items:");
+        order.printItems();
+        System.out.println("Cart details: ");
+        cart4.printItems();
+        Account account = new Account("Shubham", "12345676", new Address("Delhi"));
+        List<Account> accountList = new ArrayList<>();
 
     }
 }

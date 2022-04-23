@@ -1,19 +1,30 @@
-package com.thoughtworks.ddd_workshop.model;
+package com.thoughtworks.ddd_workshop.domain.model;
 
-import java.util.Currency;
 import java.util.Objects;
+
+import static com.thoughtworks.ddd_workshop.domain.domain_service.PricingService.getUpdatedPrice;
 
 public class Product {
     private final String name;
     private final Price price;
+
 
     public Product(String name, Price price) {
         this.name = name;
         this.price = price;
     }
 
+    public Product(String name) {
+        this.name = name;
+        this.price = getUpdatedPrice(name);
+    }
+
     public String getName() {
         return name;
+    }
+
+    public Price getPrice() {
+        return price;
     }
 
     @Override
