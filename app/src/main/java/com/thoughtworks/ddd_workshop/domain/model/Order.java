@@ -12,4 +12,12 @@ public class Order {
     public void printItems() {
         orderedItems.forEach(item -> System.out.println(item.toString()));
     }
+
+    public Double calculateCost(){
+        double sum = 0.0;
+        for (Item item: orderedItems) {
+            sum = sum + (item.getProduct().getPrice().getAmount() + item.getProduct().getWeight() * 0.01) * item.getQty();
+        }
+        return sum;
+    }
 }

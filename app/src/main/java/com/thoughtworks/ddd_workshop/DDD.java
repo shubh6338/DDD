@@ -20,11 +20,48 @@ public class DDD {
     public static HashMap<String, Price> competitorMap = new HashMap<>();
 
     public static void main(String[] args) {
+        cartProblems();
+        userCase10();
+        userCase11();
+    }
+
+    private static void userCase11() {
         Currency usd = Currency.getInstance("USD");
-        Product product1 = new Product("IPadPro", new Price(10, usd));
-        Product product2 = new Product("Hero Ink Pen", new Price(20, usd));
-        Product product3 = new Product("GM Cricket Bat", new Price(30, usd));
-        Product product4 = new Product("IPadPro", new Price(40, usd));
+        Product product1 = new Product("IPadPro", new Price(10, usd), 5000);
+        Product product2 = new Product("Hero Ink Pen", new Price(20, usd), 100);
+        Item iPadPro = new Item(product1);
+        Item heroPen = new Item(product2);
+        Cart cart1 = new Cart();
+        cart1.addItemToCart(iPadPro);
+        cart1.addItemToCart(heroPen);
+
+        Order order = OrderService(cart1);
+        System.out.println("Ordered items:");
+        order.printItems();
+        System.out.println(order.calculateCost());
+
+    }
+
+    private static void userCase10() {
+        Account account = new Account("Shubham", "12345676", new Address("Delhi"));
+        List<Account> accountList = new ArrayList<>();
+
+        Customer customer = new Customer("Shubham", new Address("Delhi"));
+        accountList.add(account);
+        customer.setAccountList(accountList);
+
+        Address updatedAddress = new Address("Gurgaon");
+        updateAddress(customer, updatedAddress);
+        System.out.println(customer.getAddress().getCity());
+        System.out.println(account.getAddress().getCity());
+    }
+
+    private static void cartProblems() {
+        Currency usd = Currency.getInstance("USD");
+        Product product1 = new Product("IPadPro", new Price(10, usd), 10);
+        Product product2 = new Product("Hero Ink Pen", new Price(20, usd), 10);
+        Product product3 = new Product("GM Cricket Bat", new Price(30, usd), 10);
+        Product product4 = new Product("IPadPro", new Price(40, usd), 10);
         Cart cart1 = new Cart();
 
         Item iPadPro = new Item(product1);
@@ -42,7 +79,7 @@ public class DDD {
         cart1.printRemovedItems();
 
         competitorMap.put("IPadPro", new Price(100, usd));
-        Product product5 = new Product("IPadPro");
+        Product product5 = new Product("IPadPro", 10);
         Cart cart4 = new Cart();
         cart4.addItemToCart(new Item(product5));
         cart4.printItems();
@@ -52,16 +89,5 @@ public class DDD {
         order.printItems();
         System.out.println("Cart details: ");
         cart4.printItems();
-        Account account = new Account("Shubham", "12345676", new Address("Delhi"));
-        List<Account> accountList = new ArrayList<>();
-
-        Customer customer = new Customer("Shubham", new Address("Delhi"));
-        accountList.add(account);
-        customer.setAccountList(accountList);
-
-        Address updatedAddress = new Address("Gurgaon");
-        updateAddress(customer, updatedAddress);
-        System.out.println(customer.getAddress().getCity());
-        System.out.println(account.getAddress().getCity());
     }
 }

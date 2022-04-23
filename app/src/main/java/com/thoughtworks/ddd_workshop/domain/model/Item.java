@@ -16,11 +16,17 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item { name = " + product.getName() + ", price = " + product.getPrice().getAmount() + " "
-                + product.getPrice().getCurrency() + ", qty = " + qty + " } ";
+        return "Item{" +
+                "product=" + product.toString() +
+                ", qty=" + qty +
+                '}';
     }
 
     public Product getProduct() {
         return product;
+    }
+
+    public int getQty() {
+        return qty;
     }
 }

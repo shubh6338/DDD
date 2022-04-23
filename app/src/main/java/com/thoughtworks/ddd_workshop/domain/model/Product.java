@@ -7,16 +7,32 @@ import static com.thoughtworks.ddd_workshop.domain.domain_service.PricingService
 public class Product {
     private final String name;
     private final Price price;
+    private final int weight;
 
 
-    public Product(String name, Price price) {
+    public Product(String name, Price price, int weight) {
         this.name = name;
         this.price = price;
+        this.weight = weight;
     }
 
-    public Product(String name) {
+    public Product(String name, int weight) {
         this.name = name;
         this.price = getUpdatedPrice(name);
+        this.weight = weight;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", weight=" + weight +
+                '}';
     }
 
     public String getName() {

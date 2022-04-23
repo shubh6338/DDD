@@ -18,4 +18,12 @@ public class Price {
     public Currency getCurrency() {
         return currency;
     }
+
+    @Override
+    public String toString() {
+        return "Price{" +
+                "amount=" + amount +
+                ", currency=" + currency +
+                '}';
+    }
 }
